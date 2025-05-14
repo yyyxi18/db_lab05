@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>學生列表</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .actions {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>學生列表</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>學號</th>
+        <th>姓名</th>
+        <th>性別</th>
+        <th>電子郵件</th>
+        <th>系所</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (students.length > 0) { %>
+        <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.Student_ID %></td>
+            <td><%= student.Name %></td>
+            <td><%= student.Gender === 'M' ? '男' : (student.Gender === 'F' ? '女' : '') %></td>
+            <td><%= student.Email || '' %></td>
+            <td><%= student.Department_Name || student.Department_ID || '' %></td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5" style="text-align: center;">尚無學生資料</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  
+  <div class="actions">
+    <a href="/newStudent.html">新增學生</a>
+  </div>
+</body>
+</html>
